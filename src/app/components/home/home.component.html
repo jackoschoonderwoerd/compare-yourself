@@ -1,0 +1,40 @@
+<div class="container">
+  <ul>
+    <li>
+      <span class="material-icons"></span>
+      <button (click)="onAddUser()">ADD USER</button><br>
+      <span>Post Response</span>{{ postResponse | json}}
+    </li>
+    <hr>
+    <li>
+      <button (click)="onGetUser('single', '')">GET SINGLE USER</button>
+      <button (click)="onGetUser('all', '')">GET ALL USERS</button>
+      <button (click)="onGetUser('bla', '')">GET BLA</button><br>
+
+      <hr>
+    </li>
+    <ul class="users">
+      <li *ngFor="let user of users">
+        <ul>
+          <li>
+            {{user.UserId}} <br>
+            <button (click)="onGetUser('single', user.UserId)">GET DETAILS USER</button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="user" *ngIf="singleUser">
+      <li><span>UserId</span>{{singleUser.UserId}}</li>
+      <li><span>age</span>{{singleUser.age}}</li>
+      <li><span>height</span>{{singleUser.height}}</li>
+      <li><span>income</span>{{singleUser.income | currency:'EUR'}}</li>
+      <li><span>expenses</span>{{singleUser.expenses | currency:'EUR'}}</li>
+    </ul>
+    <li>
+      <button (click)="onDeleteUser()">DELETE USER</button><br>
+      <span>Delete Response</span>{{ deleteResponse | json}}
+    </li>
+  </ul>
+ 
+  
+</div>

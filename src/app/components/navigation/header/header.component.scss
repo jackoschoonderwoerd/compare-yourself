@@ -1,0 +1,111 @@
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: #CCC;
+}
+
+.menu {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.main-header {
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: blue;
+  padding: 0.5rem 1rem;
+  z-index: 60;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  // display: flex;
+  /* along the horizontal axis */
+  // align-items: center;
+  /* between the logo and the list */
+  // justify-content: space-between;
+}
+
+/* .mobileNavStatus {
+  display: flex;
+} */
+
+.fas {
+  font-size: 3rem;
+}
+
+.main-nav {
+  display: none;
+}
+
+.main-nav__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* display: flex; */
+}
+
+.main-nav__item {
+  margin: 0px 0.8rem;
+}
+
+.main-nav__item a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding-bottom: 0.2rem 0;
+  width: 300px;
+}
+
+.main-nav__item a:active,
+.main-nav__item a:hover {
+  color: white;
+  border-bottom: 3px solid white
+}
+
+
+
+
+
+
+
+
+
+
+/* ============= plus-40rem =================== */
+
+// @media(min-width: 40rem){
+
+//   .main-nav {
+//     /* flex within flex */
+//     display: flex;
+//   }
+//   .main-nav__item {
+//     display: inline-block;
+//   }
+//   .main-header {
+//     height: 4rem;
+//   }
+//   .fa-bars {
+//     display: none;
+//   }
+//   /* .bedrijfsnaam a {
+//     font-size: 1rem;
+//     color: red;
+//   } */
+//   .main-nav__item a {
+//     color: white;
+//     text-decoration: none;
+//     font-size: 1rem;
+//     padding-bottom: 0.2rem 0;
+//     width: 300px;
+//   }
+// }

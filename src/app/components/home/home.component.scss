@@ -1,0 +1,17 @@
+* {
+  font-size: small;
+}
+.container {
+  margin: 20px;
+}
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+.user, .users {
+  background: #CCC;
+}
+.users li {
+  border: 2px solid white;
+}

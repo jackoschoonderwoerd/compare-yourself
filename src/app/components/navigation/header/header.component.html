@@ -1,0 +1,13 @@
+<header class="main-header" fxLayout fxLayoutAlign="space-between center">
+  <!-- <button (click)="onToggleSidenav()">TOGGLE</button> -->
+  <ul fxLayout>
+    <li fxHide.gt-xs (click)="onToggleSidenav()"><a href=#><span class="material-icons menu">menu</span></a></li>
+    <li fxHide.lt-sm><a routerLink="home" routerLinkActive="active">HOME</a></li>
+  </ul>
+  
+  <ul fxLayout fxLayoutGap="20px">
+    <li fxHide.gt-xs><a routerLink="home" routerLinkActive="active">HOME</a></li>
+    <li><a routerLink="sign-in" routerLinkActive="active">SIGN IN</a></li>
+    <li><a routerLink="sign-up" routerLinkActive="active">SIGN UP</a></li>
+  </ul>
+</header>

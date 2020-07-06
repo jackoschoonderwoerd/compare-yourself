@@ -1,0 +1,13 @@
+<div class="page">
+  <div class="app-header">
+      <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+      <app-side-nav #sidenav></app-side-nav>
+    <!-- <app-header></app-header> -->
+  </div>
+  <div class="outlet">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="app-footer">
+    <app-footer></app-footer>
+  </div>
+</div>

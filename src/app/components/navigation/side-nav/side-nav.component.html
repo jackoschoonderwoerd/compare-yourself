@@ -1,0 +1,10 @@
+<div class="sidenav">
+  <nav
+    [ngClass]="{ 'mobile-nav-open': mobileNavStatus }"
+    class="mobile-nav-closed">
+    <p (click)="toggle()" class="mobile-nav__item"><a [routerLink]="['home']">HOME</a></p>
+    <p (click)="toggle()" class="mobile-nav__item"><a [routerLink]="['sign-in']">SIGN IN</a></p>
+    <p (click)="toggle()" class="mobile-nav__item"><a [routerLink]="['sign-up']">SIGN UP</a></p>
+    
+  </nav>
+</div>
