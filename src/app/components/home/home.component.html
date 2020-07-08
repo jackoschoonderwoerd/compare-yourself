@@ -1,4 +1,64 @@
-<div class="container">
+<mat-expansion-panel
+  hideToggle
+  (opened)="usersPanelOpenState = true"
+  (closed)="usersPanelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <button (click)="onGetUser('all', '')">{{usersPanelOpenState ? 'HIDE USERS' : 'SHOW USERS'}}</button>
+    </mat-panel-title>
+   
+  </mat-expansion-panel-header>
+  
+  
+  <mat-expansion-panel
+    hideToggle 
+    *ngFor="let user of users; let index = i"
+    (opened)="userPanelOpenState = user.UserId"
+    (closed)="userPanelOpenState = 'false'">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-panel-title-single-user">
+        {{user.UserId}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <button>{{userPanelOpenState === user.UserId ? 'HIDE' : 'SHOW'}}</button>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="user-content">
+      <ul>
+        <li>
+          <button>Edit</button>
+          <button (click)="onDeleteUser(user.UserId)">Delete</button>
+        </li>
+        <li>
+          <span class="user-detail">age</span>{{ user.age}}
+        </li>
+        <li>
+          <span class="user-detail">Height</span>{{ user.height}}
+        </li>
+        <li>
+          <span class="user-detail">income</span>{{ user.income}}
+        </li>
+        <li>
+          <span class="user-detail">expenses</span>{{ user.expenses}}
+        </li>
+      </ul>
+    </div>
+  </mat-expansion-panel>
+
+
+</mat-expansion-panel>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
   <ul>
     <li>
       <span class="material-icons"></span>
@@ -8,22 +68,13 @@
     <hr>
     <li>
       <button (click)="onGetUser('single', '')">GET SINGLE USER</button>
-      <button (click)="onGetUser('all', '')">GET ALL USERS</button>
       <button (click)="onGetUser('bla', '')">GET BLA</button><br>
 
       <hr>
     </li>
-    <ul class="users">
-      <li *ngFor="let user of users">
-        <ul>
-          <li>
-            {{user.UserId}} <br>
-            <button (click)="onGetUser('single', user.UserId)">GET DETAILS USER</button>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <ul class="user" *ngIf="singleUser">
+    <ul
+
+      *ngIf="singleUser">
       <li><span>UserId</span>{{singleUser.UserId}}</li>
       <li><span>age</span>{{singleUser.age}}</li>
       <li><span>height</span>{{singleUser.height}}</li>
@@ -35,6 +86,44 @@
       <span>Delete Response</span>{{ deleteResponse | json}}
     </li>
   </ul>
- 
-  
-</div>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span (click)="onGetUser('all', '')">GET ALL USERS</span>
+      </mat-panel-title>
+      <mat-panel-description>
+        This is a summary of the content
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul
+      [ngClass]="{'users-list-open': showUsersList}"
+      class="users-list-closed">
+      <li *ngFor="let user of users">
+        <ul>
+          <li>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{user.UserId}}
+                  <button (click)="onGetUser('single', user.UserId)">GET DETAILS</button>
+                </mat-panel-title>
+                <mat-panel-description>
+                  mat-panel-description
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <ul>
+                <li>mat-expansion-panel-header</li>
+              </ul>
+            </mat-expansion-panel>
+            <ul>
+              <li>
+                mat-expansion-pane
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </mat-expansion-panel>
+
+</div> -->

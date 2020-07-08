@@ -1,1 +1,71 @@
-<p>sign-up works!</p>
+<div class="authContainer" fxLayout fxLayoutAlign="center">
+  <div class="form-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="25px">
+    <h3>SIGN UP</h3>
+    <form
+      [formGroup]="signUpForm"
+      (ngSubmit)=onSignUp()
+      fxLayout="column">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="name"
+          placeholder="NAME">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="email"
+          placeholder="EMAIL">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="password"
+          placeholder="PASSWORD">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="confirmPassword"
+          placeholder="CONFIRM PASSWORD">
+      </mat-form-field>
+      <button
+        [disabled]="!signUpForm.valid"
+        mat-raised-button
+        type="submit"
+        color="primary">SIGN UP</button>
+    </form>
+
+    <form
+      [formGroup]="confirmForm"
+      (ngSubmit)="onConfirm()"
+      fxLayout="column">
+      <mat-form-field>
+        <input 
+          type="text"
+          matInput
+          formControlName="name"
+          placeholder="NAME"
+          >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="validationCode"
+          placeholder="CONFIRM">
+      </mat-form-field>
+      <button
+        [disabled]="confirmForm.invalid"
+        mat-raised-button
+        color="primary"
+        type="submit">
+        CONFIRM
+      </button>
+    </form>
+  </div>
+</div>

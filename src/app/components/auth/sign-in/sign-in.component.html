@@ -1,1 +1,33 @@
-<p>sign-in works!</p>
+<div class="auth-container" fxLayout fxLayoutAlign="center">
+  <div class="form-container" fxLayout="column" fxLayoutAlign="top center">
+    <h3>SIGN IN</h3>
+
+    <form
+      [formGroup]="signInForm" 
+      fxLayout="column"
+      (ngSubmit)="onSignIn()">
+      <mat-form-field>
+
+        <input
+          placeholder="NAME"
+          matInput
+          type="text"
+          formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          placeholder="PASSWORD"
+          matInput
+          type="text"
+          formControlName="password">
+      </mat-form-field>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary">
+        SIGN IN
+      </button>
+    </form>
+  </div>
+
+</div>

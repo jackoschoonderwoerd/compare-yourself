@@ -19,9 +19,7 @@ export class AwsService {
   addUser(body) {
     return this.http.post(this.url, body)
   }
-  deleteUser() {
+  deleteUser(UserId) {
     return this.http.delete(this.url);
   }
-
-
 }

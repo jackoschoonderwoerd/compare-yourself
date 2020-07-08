@@ -8,6 +8,8 @@ import { AwsService } from 'src/app/services/aws.service';
 })
 export class HomeComponent implements OnInit {
 
+  usersPanelOpenState: boolean = false;
+  userPanelOpenState: string;
   users;
   singleUser;
   postResponse;
@@ -19,6 +21,7 @@ export class HomeComponent implements OnInit {
     "income": 100,
     "expenses": 24
   }
+  showUsersList: boolean = false;
 
   constructor(private aws: AwsService) { }
 
@@ -36,13 +39,14 @@ export class HomeComponent implements OnInit {
       } else {
         this.singleUser = response.Item;
         this.users = [];
+        this.showUsersList = true;
       }
     })
   }
 
-  onDeleteUser() {
-    this.aws.deleteUser().subscribe(response => {
-      this.deleteResponse = response;
+  onDeleteUser(UserId) {
+    this.aws.deleteUser(UserId).subscribe(response => {
+;      this.deleteResponse = response;
     })
   }
 }
