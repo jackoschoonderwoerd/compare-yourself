@@ -8,7 +8,6 @@
   <ul fxLayout fxLayoutGap="20px">
     <li fxHide.gt-xs><a routerLink="home" routerLinkActive="active">HOME</a></li>
     <li *ngIf="authStatus"><a routerLink="show-users" routerLinkActive="active">SHOW USERS</a></li>
-    <li><a routerLink="create-user" routerLinkActive="active">CREATE USER</a></li>
     <li *ngIf="!authStatus"><a routerLink="sign-in" routerLinkActive="active">SIGN IN</a></li>
     <li *ngIf="!authStatus"><a routerLink="sign-up" routerLinkActive="active">SIGN UP</a></li>
     <li *ngIf="authStatus"><a (click)="onLogOut()">LOG OUT</a></li>

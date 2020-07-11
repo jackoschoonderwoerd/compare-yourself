@@ -29,21 +29,40 @@
         hideToggle
         class="edit-user-panel"
         (opened)="userPanelOpenState = true"
-        (closed)="userPanelOpenState = false">
+        (closed)="userPanelOpenState = false"
+        #mep="matExpansionPanel">
         <mat-expansion-panel-header>
-          <mat-panel-title (click)="toggleUserPanelOpenState()">
-            <button mat-raised-button color="primary">{{userPanelOpenState ? 'CLOSE' : 'EDIT'}}</button>
+          <mat-panel-title>
+            <button
+              mat-raised-button
+              color="primary">
+              {{ mep.expanded ? 'CLOSE' : 'EDIT'}}
+            </button>
             
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <button
-          mat-raised-button
-          color="primary"
-          class="enable-editing-button"
-          (click)="enableEditing()">
-          {{editMode ? 'DISABLE EDITING' : 'ENABLE EDITING'}}
-        </button>
+        <div class="buttons" fxLayout fxLayoutGap="20px">
+          <button
+            mat-raised-button
+            color="primary"
+            class="enable-editing-button"
+            (click)="toggleEditing($event)">
+            ENABLE EDITING
+          </button>
+          <button
+            type="submit" 
+            mat-raised-button 
+            color="primary">
+            SAVE EDITS
+          </button>
+          <button 
+            type="button" 
+            mat-raised-button color="primary" 
+            (click)="cancelEdits()">
+            CANCEL EDITS
+          </button>
+        </div>
         <form
           *ngIf="user"
           [formGroup]="userDetailForm"
@@ -86,11 +105,7 @@
               type="text"
               formControlName="userId">
           </mat-form-field>
-          <div class="edit-buttons">
-            <button type="submit" mat-raised-button>SAVE EDITS</button>
-            <button type="button" mat-raised-button (click)="onCancelEdits()">CANCEL
-              EDITS</button>
-          </div>
+         
         </form>
       </mat-expansion-panel>
     </mat-expansion-panel>

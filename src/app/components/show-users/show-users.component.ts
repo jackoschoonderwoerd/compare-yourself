@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AwsService } from 'src/app/services/aws.service';
 import { UserProperties } from 'src/app/models/user-properties.models';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -11,6 +11,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class ShowUsersComponent implements OnInit {
 
+  @ViewChild('mep') mep: any
+
   // usersPanelOpenState: boolean = false;
   userPanelOpenState: boolean;
   users;
@@ -21,6 +23,7 @@ export class ShowUsersComponent implements OnInit {
   user
   userDetailForm: FormGroup;
   editMode: boolean = false;
+  editPanelExpanded: boolean = true;
 
   userProperties: UserProperties = {
     "age": 19,
@@ -69,19 +72,8 @@ export class ShowUsersComponent implements OnInit {
     })
   }
 
-  enableEditing() {
-    if (this.editMode) {
-      this.editMode = false;
-      this.userDetailForm.disable();
-    } else {
-      this.userDetailForm.enable();
-      this.editMode = true;
-      // this.userDetailForm.controls.age.enable();
-      // this.userDetailForm.controls.height.enable();
-      // this.userDetailForm.controls.income.enable();
-      // this.userDetailForm.controls.expenses.enable();
-      // this.userDetailForm.controls.userId.enable();
-    }
+  toggleEditing(e) {
+    this.userDetailForm.enable();
   }
 
   onSaveEdits() {
@@ -101,20 +93,10 @@ export class ShowUsersComponent implements OnInit {
       this.userDetailForm.value.userId);
     this.initUserDetailForm();
   }
-  onCancelEdits() {
-    console.log(this.user);
+
+  cancelEdits() {
+    this.mep.expanded = false;
     this.initUserDetailForm();
-    this.editMode = false;
-  }
-
-  // toggleUsersPanelOpenState() {
-  //   this.usersPanelOpenState = !this.usersPanelOpenState;
-  //   console.log(this.usersPanelOpenState);
-  // }
-  toggleUserPanelOpenState() {
     this.userDetailForm.disable();
-    this.editMode = false;
   }
-
- 
 }
