@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AwsService } from 'src/app/services/aws.service';
+import { UserProperties } from 'src/app/models/user-properties.models';
 
 @Component({
   selector: 'app-home',
@@ -14,39 +15,19 @@ export class HomeComponent implements OnInit {
   singleUser;
   postResponse;
   deleteResponse;
+  newResult
 
-  body = {
-    "age": 17,
+  userProperties: UserProperties = {
+    "age": 19,
     "height": 74,
-    "income": 100,
+    "income": 101,
     "expenses": 24
   }
   showUsersList: boolean = false;
 
   constructor(private aws: AwsService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  onAddUser() {
-    this.aws.addUser(this.body)
-  }
-
-  onGetUser(type, UserId) {
-    this.aws.getUser(type).subscribe((response: any) => {
-      if(response.Items) {
-        this.users = response.Items;
-        this.singleUser = null;
-      } else {
-        this.singleUser = response.Item;
-        this.users = [];
-        this.showUsersList = true;
-      }
-    })
-  }
-
-  onDeleteUser(UserId) {
-    this.aws.deleteUser(UserId).subscribe(response => {
-;      this.deleteResponse = response;
-    })
   }
 }

@@ -1,0 +1,98 @@
+<!-- <button (click)="onGetUser('all', '')">GET ALL</button> -->
+<mat-accordion>
+  <div class="" *ngFor="let id of ids">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header (click)="onGetUser('single', id)">
+        <mat-panel-title>
+          <span>MAT PANEL TITLE / HEADER: </span>{{ id }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="">
+        <mat-card>
+        <ul class="user-list" *ngIf="user">
+          <li fxLayout fxLayoutAlign="space-between"><span>Age:</span><span>{{user.age}}</span></li>
+          <li fxLayout fxLayoutAlign="space-between"><span>Height:</span><span>{{user.height}}</span></li>
+          <li fxLayout fxLayoutAlign="space-between"><span>Income</span><span>{{user.income}}</span></li>
+          <li fxLayout fxLayoutAlign="space-between"><span>Expenses</span><span>{{user.expenses}}</span></li>
+        </ul>
+        <button
+          mat-raised-button
+          color="primary"
+          class="delete-user-button"
+          (click)="onDeleteUser(id)">
+          DELETE USER
+        </button>
+      </mat-card>
+      </div>
+
+      <mat-expansion-panel
+        hideToggle
+        class="edit-user-panel"
+        (opened)="userPanelOpenState = true"
+        (closed)="userPanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title (click)="toggleUserPanelOpenState()">
+            <button mat-raised-button color="primary">{{userPanelOpenState ? 'CLOSE' : 'EDIT'}}</button>
+            
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <button
+          mat-raised-button
+          color="primary"
+          class="enable-editing-button"
+          (click)="enableEditing()">
+          {{editMode ? 'DISABLE EDITING' : 'ENABLE EDITING'}}
+        </button>
+        <form
+          *ngIf="user"
+          [formGroup]="userDetailForm"
+          (ngSubmit)="onSaveEdits()"
+          fxLayout="column"
+          fxLayoutAlign="center">
+          <mat-form-field>
+            <input
+              placeholder="AGE"
+              matInput
+              type="number"
+              formControlName="age">
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              placeholder="HEIGHT"
+              matInput
+              type="number"
+              formControlName="height">
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              placeholder="INCOME"
+              matInput
+              type="number"
+              formControlName="income">
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              placeholder="EXPENSES"
+              matInput
+              type="number"
+              formControlName="expenses">
+          </mat-form-field>
+          <mat-form-field [hidden]="true">
+
+            <input
+              placeholder="USERID"
+              matInput
+              type="text"
+              formControlName="userId">
+          </mat-form-field>
+          <div class="edit-buttons">
+            <button type="submit" mat-raised-button>SAVE EDITS</button>
+            <button type="button" mat-raised-button (click)="onCancelEdits()">CANCEL
+              EDITS</button>
+          </div>
+        </form>
+      </mat-expansion-panel>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>

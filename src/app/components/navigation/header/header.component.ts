@@ -10,14 +10,24 @@ export class HeaderComponent implements OnInit {
 
   @Output() sidenavToggle = new EventEmitter<void>();
 
+  authStatus: boolean = false;
   sidenavStatus: boolean = false;
 
-  constructor(private autService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.autService.isAuthenticated().subscribe(result => {
-      console.log(result);
-    })
+    console.log('header onInit()')
+    this.authService.authStatusChanged.subscribe(
+      (authStatus) => {
+        this.authStatus = authStatus;
+        console.log('this.authStatus: ', this.authStatus);
+      }
+    )
+    this.authService.isAuthenticated().subscribe(
+      data => {
+        console.log(data);
+        this.authStatus = data;
+      });
   }
 
   onToggleSidenav() {
@@ -25,6 +35,6 @@ export class HeaderComponent implements OnInit {
     this.sidenavToggle.emit();
   }
   onLogOut() {
-    this.autService.logOut();
+    this.authService.logOut();
   }
 }

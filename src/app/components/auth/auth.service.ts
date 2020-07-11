@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { 
   CognitoUserPool, 
   CognitoUserAttribute, 
@@ -9,7 +9,8 @@ import {
 
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+
 
 const POOL_DATA = {
   UserPoolId: 'eu-central-1_og6vZpt4U',
@@ -23,6 +24,8 @@ const userPool = new CognitoUserPool(POOL_DATA);
 })
 export class AuthService {
   registeredUser: CognitoUser;
+  authStatusChanged = new Subject<boolean>();
+
 
   constructor(private router: Router) { }
 
@@ -70,6 +73,7 @@ export class AuthService {
   }
 
   signIn(username: string, password: string) {
+    console.log(username, password);
     const authData = {
       Username: username,
       Password: password
@@ -83,19 +87,23 @@ export class AuthService {
     const that = this;
     cognitoUser.authenticateUser(authDetails, {
       onSuccess(result: CognitoUserSession) {
-        console.log(result)
+        that.authStatusChanged.next(true);
+        console.log(result);
       },
       onFailure(err) {
         console.log(err)
       }
     });
   }
+  
   getAuthenticatedUser() {
+    console.log(userPool.getCurrentUser());
     return userPool.getCurrentUser();
   }
 
   logOut() {
     this.getAuthenticatedUser().signOut();
+    this.authStatusChanged.next(false);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -120,6 +128,15 @@ export class AuthService {
       observer.complete();
     });
     return obs;
+  }
+
+  initAuth() {
+    console.log('auth.service initAuth()');
+    this.isAuthenticated().subscribe(
+      (authStatus) => {
+        console.log(authStatus);
+        this.authStatusChanged.next(authStatus)
+      });
   }
 }
 

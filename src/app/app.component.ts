@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from './components/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,10 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class AppComponent implements OnInit  {
   title = 'compare-yourself';
   
-  appForm: FormGroup
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.appForm = new FormGroup({
-     name: new FormControl(null, [])
-    })
+    console.log('app.component onInit()');
+    this.authService.initAuth();
   }
 }
